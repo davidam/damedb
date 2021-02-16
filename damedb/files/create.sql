@@ -1,8 +1,7 @@
-drop database sqlexamples;
-drop user 'jeffrey'@'localhost';
 
-create database if not exists sqlexamples;
+create database sqlexamples;
 create user 'jeffrey'@'localhost';
+
 grant all privileges on sqlexamples.* to 'jeffrey'@'localhost';
 
 use sqlexamples;
