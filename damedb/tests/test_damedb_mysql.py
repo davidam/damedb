@@ -22,30 +22,14 @@
 # Boston, MA 02110-1301 USA,
 
 from unittest import TestCase
-import MySQLdb
-import pickle
+import mysql.connector
 
 class TestMySQL(TestCase):
-    def test_cursor(self):
-        db = MySQLdb.connect(host="localhost", user="root", db="sqlexamples")
-        cursor = db.cursor()
-        s = str(cursor)
-        self.assertEqual('<MySQLdb.cursors.Cursor', s[0:23])
-
-    def test_create(self):
-        db = MySQLdb.connect(host="localhost", user="root", db="sqlexamples")
-        c = db.cursor()
-        c.execute("""DROP TABLE breakfast""")
-        c.execute("""CREATE TABLE breakfast (name varchar(100), spam int, eggs int, sausage int, price int)""")
-        c.executemany(
-            """INSERT INTO breakfast (name, spam, eggs, sausage, price)
-            VALUES (%s, %s, %s, %s, %s)""",
-            [
-                ("Spam and Sausage Lover's Plate", 5, 1, 8, 7.95 ),
-                ("Not So Much Spam Plate", 3, 2, 0, 3.95 ),
-                ("Don't Wany ANY SPAM! Plate", 0, 4, 3, 5.95 )
-            ] )
-        db.query("""SELECT spam, eggs, sausage FROM breakfast
-         WHERE price < 5""")
-        r=db.store_result()
-        self.assertEqual(r.fetch_row(), ((3, 2, 0),))
+    def test_connect(self):
+        mydb = mysql.connector.connect(host="localhost", database="sqlexamples", user="jeffrey", password="")
+        mycursor = mydb.cursor()
+        mycursor.execute("SHOW tables")
+        l = []
+        for x in mycursor:
+            l.append(x)
+        self.assertEqual(l, [('a',), ('b',)])
