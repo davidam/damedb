@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2019  David Arroyo Menéndez
+# Copyright (C) 2021  David Arroyo Menéndez
 
 # Author: David Arroyo Menéndez <davidam@gnu.org>
 # Maintainer: David Arroyo Menéndez <davidam@gnu.org>
@@ -17,7 +17,7 @@
 # GNU General Public License for more details.
 
 # You should have received a copy of the GNU General Public License
-# along with Damegender; see the file LICENSE.  If not, write to
+# along with DameDB; see the file LICENSE.  If not, write to
 # the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 # Boston, MA 02110-1301 USA,
 
@@ -29,7 +29,7 @@ with open(path.join(this_directory, 'README.md')) as f:
     long_description = f.read()
 
 setup(name='damedb',
-      version='0.0.1',
+      version='0.0.2',
       description='Learning Databases in Python from tests by David Arroyo MEnéndez',
       long_description= long_description,
       classifiers=[
@@ -42,8 +42,16 @@ setup(name='damedb',
       author='David Arroyo Menéndez',
       author_email='davidam@gnu.org',
       license='GPLv3',
-      packages=['damedb'],
-      data_files=[('damedb',['requirements.txt','LICENSE', 'files/images/mapgie_in_madrid_91.jpg'])],
+      packages=[
+          'damedb',
+          'damedb.files',
+          'damedb.tests'
+      ],
+      namespace_packages=[
+          'damedb',
+          'damedb.files',
+          'damedb.tests',
+      ],
       install_requires=[
           'mongoengine',
           'mysql-connector',          
