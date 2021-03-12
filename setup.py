@@ -29,7 +29,7 @@ with open(path.join(this_directory, 'README.md')) as f:
     long_description = f.read()
 
 setup(name='damedb',
-      version='0.0.2',
+      version='0.0.5',
       description='Learning Databases in Python from tests by David Arroyo MEnéndez',
       long_description= long_description,
       classifiers=[
@@ -40,7 +40,7 @@ setup(name='damedb',
       keywords='python3, libraries, databases',
       url='http://github.com/davidam/damedb',
       author='David Arroyo Menéndez',
-      author_email='davidam@gnu.org',
+      author_email='davidam@gmail.com',
       license='GPLv3',
       packages=[
           'damedb',
@@ -54,8 +54,9 @@ setup(name='damedb',
       ],
       install_requires=[
           'mongoengine',
-          'mysql-connector',          
+          'mysql-connector',
           'pysqlite3',
+          'postgres',
       ],
       test_suite='nose.collector',
       tests_require=['nose', 'nose-cover3'],
