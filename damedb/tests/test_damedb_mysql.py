@@ -32,4 +32,4 @@ class TestMySQL(TestCase):
         l = []
         for x in mycursor:
             l.append(x)
-        self.assertEqual(l, [('a',), ('b',)])
+        self.assertEqual(l, [(bytearray(b'a'),), (bytearray(b'b'),)])
