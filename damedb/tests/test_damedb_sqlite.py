@@ -26,6 +26,7 @@
 import unittest
 import sqlite3
 
+
 class TddInPythonExample(unittest.TestCase):
 
     def test_basics(self):
@@ -37,9 +38,12 @@ class TddInPythonExample(unittest.TestCase):
         # Create the table
         con.execute("create table person(firstname, lastname)")
         # Fill the table
-        con.executemany("insert into person(firstname, lastname) values (?, ?)", persons)
+        sqlinsert = "insert into person(firstname, lastname) values (?, ?)"
+        con.executemany(sqlinsert, persons)
         # Print the table contents
         for row in con.execute("select firstname, lastname from person"):
             print(row)
-        string = "I just deleted " +  str(con.execute("delete from person").rowcount) + " rows"
-        self.assertEqual("I just deleted 2 rows", string)
+        string1 = "I just deleted "
+        string1 = string1 + str(con.execute("delete from person").rowcount)
+        string1 = string1 + " rows"
+        self.assertEqual("I just deleted 2 rows", string1)
