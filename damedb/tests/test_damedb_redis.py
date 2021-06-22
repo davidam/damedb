@@ -27,10 +27,10 @@ import unittest
 import redis
 import datetime
 
+
 class TddInPythonExample(unittest.TestCase):
 
     def test_basics(self):
         r = redis.Redis()
-        r.mset({"Croatia": "Zagreb", "Bahamas": "Nassau"})        
+        r.mset({"Croatia": "Zagreb", "Bahamas": "Nassau"})
         self.assertEqual("b'Nassau'", str(r.get("Bahamas")))
-
