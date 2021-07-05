@@ -24,12 +24,16 @@
 from unittest import TestCase
 import mysql.connector
 
+
 class TestMySQL(TestCase):
     def test_connect(self):
-        mydb = mysql.connector.connect(host="localhost", database="sqlexamples", user="jeffrey", password="")
+        mydb = mysql.connector.connect(host="localhost",
+                                       database="sqlexamples",
+                                       user="jeffrey",
+                                       password="")
         mycursor = mydb.cursor()
         mycursor.execute("SHOW tables")
-        l = []
+        l1 = []
         for x in mycursor:
-            l.append(x)
-        self.assertEqual(l, [(bytearray(b'a'),), (bytearray(b'b'),)])
+            l1.append(x)
+        self.assertEqual(l1, [(bytearray(b'a'),), (bytearray(b'b'),)])
