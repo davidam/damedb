@@ -26,11 +26,13 @@ import unittest
 import datetime
 from mongoengine import *
 
+
 class Post(Document):
-     title = StringField(required=True, max_length=200)
-     content = StringField(required=True)
-     author = StringField(required=True, max_length=50)
-     published = DateTimeField(default=datetime.datetime.now)
+    title = StringField(required=True, max_length=200)
+    content = StringField(required=True)
+    author = StringField(required=True, max_length=50)
+    published = DateTimeField(default=datetime.datetime.now)
+
 
 class TddInPythonExample(unittest.TestCase):
 
@@ -47,7 +49,9 @@ class TddInPythonExample(unittest.TestCase):
         post_1.title = 'A Better Post Title'
         post_1.save()
         self.assertEqual(post_1.title, 'A Better Post Title')
-        post_2 = Post(title="Good title", content='Content goes here', author='David')
+        post_2 = Post(title="Good title",
+                      content='Content goes here',
+                      author='David')
         post_2.save()
         self.assertEqual(post_2.author, 'David')
 
@@ -56,40 +60,33 @@ class TddInPythonExample(unittest.TestCase):
         mydb = myclient["mydatabase"]
         mycollection = mydb["customers"]
 
-        l = []
+        l1 = []
         for x in mycollection.find():
-            if (x["name"]=="Jesus"):
-                 l.append(x["address"])
+            if (x["name"] == "Jesus"):
+                l1.append(x["address"])
 
-        self.assertEqual(l, ['Calle Caracas  18'])
-
-
-    def test_db(self):
-        client = connect('mongoengine_test', host='localhost', port=27017)
-        self.assertEqual(str(client), "MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=True, read_preference=Primary())")
-        db = client['test-database']
-        self.assertEqual(str(db), "Database(MongoClient(host=['localhost:27017'], document_class=dict, tz_aware=False, connect=True, read_preference=Primary()), 'test-database')")
+        self.assertEqual(l1, ['Calle Caracas  18'])
 
     def test_insert(self):
         myclient = connect('mongoengine_test', host='localhost', port=27017)
         mydb = myclient["mydatabase"]
         mycol = mydb["customers"]
-        mydict = { "name": "John", "address": "Highway 37" }
+        mydict = {"name": "John", "address": "Highway 37"}
         x = mycol.insert_one(mydict)
         self.assertTrue(x.inserted_id)
         mylist = [
-             { "name": "Amy", "address": "Apple st 652"},
-             { "name": "Hannah", "address": "Mountain 21"},
-             { "name": "Michael", "address": "Valley 345"},
-             { "name": "Sandy", "address": "Ocean blvd 2"},
-             { "name": "Betty", "address": "Green Grass 1"},
-             { "name": "Richard", "address": "Sky st 331"},
-             { "name": "Susan", "address": "One way 98"},
-             { "name": "Vicky", "address": "Yellow Garden 2"},
-             { "name": "Ben", "address": "Park Lane 38"},
-             { "name": "William", "address": "Central st 954"},
-             { "name": "Chuck", "address": "Main Road 989"},
-             { "name": "Viola", "address": "Sideway 1633"}
+             {"name": "Amy", "address": "Apple st 652"},
+             {"name": "Hannah", "address": "Mountain 21"},
+             {"name": "Michael", "address": "Valley 345"},
+             {"name": "Sandy", "address": "Ocean blvd 2"},
+             {"name": "Betty", "address": "Green Grass 1"},
+             {"name": "Richard", "address": "Sky st 331"},
+             {"name": "Susan", "address": "One way 98"},
+             {"name": "Vicky", "address": "Yellow Garden 2"},
+             {"name": "Ben", "address": "Park Lane 38"},
+             {"name": "William", "address": "Central st 954"},
+             {"name": "Chuck", "address": "Main Road 989"},
+             {"name": "Viola", "address": "Sideway 1633"}
         ]
         y = mycol.insert_many(mylist)
         self.assertEqual(len(y.inserted_ids), len(mylist))
