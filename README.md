@@ -17,20 +17,22 @@ Menéndez.
 -   Installing Mongo: https://docs.mongodb.com/manual/tutorial
 -   Installing MySQL: https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/
 -   Downloading SQLite: https://www.sqlite.org/download.html 
+-   Installing Redis: https://redis.io/docs/latest/operate/oss_and_stack/install/archive/install-redis/
 
 # Check Test<a id="sec-2" name="sec-2"></a>
 
 -   Execute all tests:
 
-    $ nosetests3 tests
+    $ pytest tests
 
 -   Execute one file:
 
-    $ nosetests3 tests/test_basics.py
+    $ redis-server &
+    $ pytest tests/test_damedb_redis.py
 
 -   Execute one test:
 
-    nosetests3 test/test_syn.py:TddInPythonExample.test_syn_returns_correct_result
+    $ pytest tests/test_damedb_sqlite.py::TddInPythonExample::test_basics
 
 # Pypi<a id="sec-3" name="sec-3"></a>
 
